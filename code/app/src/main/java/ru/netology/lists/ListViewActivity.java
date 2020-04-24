@@ -20,6 +20,9 @@ import androidx.appcompat.widget.Toolbar;
 
 public class ListViewActivity extends AppCompatActivity {
 
+    private static final String FIRST_ITEM = "0";
+    private static final String SECOND_ITEM = "1";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +31,7 @@ public class ListViewActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         List<Map<String, String>> content = new ArrayList<>();
-        ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = findViewById(R.id.list);
 
 
 
@@ -36,14 +39,14 @@ public class ListViewActivity extends AppCompatActivity {
         String[] arrayContent = getString(R.string.large_text).split("\n\n");
         for (int i = 0; i < arrayContent.length; i++) {
             Map<String, String> rowMap = new HashMap<>();
-            rowMap.put("0", arrayContent[i]);
-            rowMap.put("1", String.valueOf(arrayContent[i].length()));
+            rowMap.put(FIRST_ITEM, arrayContent[i]);
+            rowMap.put(SECOND_ITEM, String.valueOf(arrayContent[i].length()));
             content.add(rowMap);
         }
 
 
         SimpleAdapter adapter = new SimpleAdapter(this, content,  android.R.layout.simple_list_item_2,
-                new String[]{"0", "1"},
+                new String[]{FIRST_ITEM, SECOND_ITEM},
                 new int[]{android.R.id.text1, android.R.id.text2});
         listView.setAdapter(adapter);
 
